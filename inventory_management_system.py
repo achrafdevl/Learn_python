@@ -5,7 +5,7 @@ class Product:
         self.quantity = quantity
 
     def display_info(self):
-        print(f"- {self.name} (${self.price:.2f}, Qty: {self.quantity})")
+        print(f"- name : {self.name} , price: (${self.price:.2f}, Qty: {self.quantity})")
 
 
 class Inventory:
@@ -31,6 +31,16 @@ class Inventory:
         else:
             print(f"\nError: Product '{name}' not found!")
 
+    def update_price(self,name, new_price):
+        product = self.find_product(name)
+        if product:
+            product.price = new_price
+            print(f"\nUpdated '{name}' price to {new_price}.")
+        else:
+            print(f"\nError: Product '{name}' not found!")
+        
+
+
     def list_products(self):
         if not self.products:
             print("\nNo products in inventory.")
@@ -47,10 +57,11 @@ def main():
         print("1. Add Product")
         print("2. Check Product Stock")
         print("3. Update Quantity")
-        print("4. List All Products")
-        print("5. Exit")
+        print("4. Update price")
+        print("5. List All Products")
+        print("6. Exit")
 
-        choice = input("Choose an option (1-5): ").strip()
+        choice = input("Choose an option (1-6): ").strip()
 
         if choice == "1":
             name = input("Enter product name: ").strip()
@@ -73,9 +84,14 @@ def main():
             inventory.update_quantity(name, new_quantity)
 
         elif choice == "4":
-            inventory.list_products()
+            name = input("Enter product name to update: ").strip()
+            new_price = int(input("Enter new quantity: "))
+            inventory.update_price(name, new_price)
 
         elif choice == "5":
+            inventory.list_products()
+
+        elif choice == "6":
             print("\nExiting the program. Goodbye!")
             break
 
