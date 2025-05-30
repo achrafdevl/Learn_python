@@ -85,10 +85,12 @@ def main():
 
         elif choice == "4":
             name = input("Enter product name to update: ").strip()
-            new_price = int(input("Enter new quantity: "))
+            new_price = int(input("Enter new price: "))
             inventory.update_price(name, new_price)
 
+        
         elif choice == "5":
+            print("all products : \n ")
             inventory.list_products()
 
         elif choice == "6":
